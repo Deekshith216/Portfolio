@@ -9,7 +9,7 @@ const profileData = {
   location: 'Mangaluru, India',
   email: 'deekshithh60@gmail.com',
   phone: '+91 7411185356',
-  image: 'public/profile.jpeg',
+  image: 'profile.jpeg',
   resumeLink: 'https://drive.google .com/file/d/1GzekXtJCT9hgKy90DxDig9BiJsVhidj0/view?usp=sharing',
 }
 
@@ -326,11 +326,11 @@ function ContactSection({ profile }) {
       id="contact"
       className="mt-20 rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/90 via-violet-950/30 to-slate-900/90 p-6 md:p-8"
     >
-      <SectionHeading title="Contact Us" subtitle="Get In Touch" />
+      <SectionHeading title="Contact Me" subtitle="Get In Touch" />
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
           <p className="text-sm leading-6 text-slate-300">
-            Fill the form and your message will be sent directly to your inbox using EmailJS.
+        .
           </p>
           <div className="mt-5 space-y-3 text-sm text-slate-200">
             <p className="rounded-xl border border-white/10 bg-slate-950/40 p-3">Email: {profile.email}</p>
