@@ -9,7 +9,7 @@ const profileData = {
   location: 'Mangaluru, India',
   email: 'deekshithh60@gmail.com',
   phone: '+91 7411185356',
-  image: 'profile.jpeg',
+  image: new URL('/profile.jpeg', import.meta.url).href,
   resumeLink: 'https://drive.google .com/file/d/1GzekXtJCT9hgKy90DxDig9BiJsVhidj0/view?usp=sharing',
 }
 
@@ -164,7 +164,15 @@ function HeroSection({ profile }) {
 
         <div className="mx-auto w-full max-w-sm">
           <div className="rounded-3xl border border-white/15 bg-white/5 p-3 backdrop-blur">
-            <img src={profile.image} alt="Profile" className="h-[420px] w-full rounded-2xl object-cover" />
+            <img
+              src={profile.image}
+              alt="Profile"
+              onError={(e) => {
+                e.currentTarget.onerror = null
+                e.currentTarget.src = '/vite.svg'
+              }}
+              className="h-[420px] w-full rounded-2xl object-cover"
+            />
             <div className="mt-3 rounded-xl bg-slate-950/60 p-4">
               <p className="text-lg font-semibold text-white">{profile.name}</p>
               <p className="text-sm text-slate-300">{profile.location}</p>
