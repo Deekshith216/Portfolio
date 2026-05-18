@@ -5,7 +5,7 @@ const profileData = {
   name: 'Deekshith H Gatty',
   title: 'Software Engineer',
   summary:
-    'I’m a Software Engineer with hands-on experience in workflow automation, backend systems, and AI-driven tools.',
+    'I’m a Software Engineer with hands on experience in workflow automation, backend systems, and AI driven tools.',
   location: 'Mangaluru, India',
   email: 'deekshithh60@gmail.com',
   phone: '+91 7411185356',
@@ -50,7 +50,7 @@ const experienceData = [
     company: 'MicroDegree',
     duration: 'March 2025 - Present',
     details:
-      'I’ve implemented end-to-end automation workflows, including scheduled email systems, Playwright-based browser automation, and AI agents GPT models for content generation.',
+      'I’ve implemented end to-end automation workflows, including scheduled email systems, Playwright based browser automation, and AI agents GPT models for content generation.',
   },
   {
     role: 'Quality control intern',
