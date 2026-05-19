@@ -1375,6 +1375,7 @@
           </a>
 
           <form class="contact-form reveal" data-delay="3" id="contact-form" novalidate>
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true" />
             <div class="row">
               <div class="field">
                 <label for="cf-name">Your name</label>
@@ -1393,7 +1394,7 @@
               <button type="submit" class="btn btn--primary">
                 Send message <span class="arrow" aria-hidden="true">→</span>
               </button>
-              <p class="form-note">Opens your email client with the message pre‑filled. Or write directly to <a href="mailto:deekshithh60@gmail.com" style="color:var(--accent)">deekshithh60@gmail.com</a>.</p>
+              <p class="form-note">Sends straight to my inbox. Or write directly to <a href="mailto:deekshithh60@gmail.com" style="color:var(--accent)">deekshithh60@gmail.com</a>.</p>
               <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
             </div>
           </form>
@@ -1529,28 +1530,67 @@
         els.forEach((el) => io.observe(el));
       })();
 
-      // Contact form — builds a mailto: URL with the user's name, email and message
+      // Contact form — sends via Web3Forms
       (function setupContactForm() {
         const form = document.getElementById('contact-form');
         if (!form) return;
         const status = document.getElementById('form-status');
-        form.addEventListener('submit', (e) => {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const ACCESS_KEY = "%VITE_WEB3FORM%";
+
+        form.addEventListener('submit', async (e) => {
           e.preventDefault();
           const data = new FormData(form);
           const name = (data.get('name') || '').toString().trim();
           const email = (data.get('email') || '').toString().trim();
           const message = (data.get('message') || '').toString().trim();
+          const botcheck = data.get('botcheck');
+
+          if (botcheck) return; // honeypot tripped — silent drop
+
           if (!name || !email || !message) {
             status.textContent = 'Please fill in every field.';
             status.style.color = 'var(--accent)';
             return;
           }
-          const subject = `Hello from ${name}`;
-          const body = `${message}\n\n— ${name}\n${email}`;
-          const url = `mailto:deekshithh60@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          window.location.href = url;
-          status.textContent = 'Opening your email client…';
-          status.style.color = 'var(--accent-alt)';
+
+          submitBtn.disabled = true;
+          const originalLabel = submitBtn.innerHTML;
+          submitBtn.innerHTML = 'Sending…';
+          status.textContent = '';
+
+          try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+              body: JSON.stringify({
+                access_key: ACCESS_KEY,
+                subject: `New portfolio message from ${name}`,
+                from_name: name,
+                name,
+                email,
+                message,
+              }),
+            });
+            const result = await res.json();
+            if (result.success) {
+              status.textContent = 'Thanks — your message is on its way.';
+              status.style.color = 'var(--accent-alt)';
+              form.reset();
+            } else {
+              throw new Error(result.message || 'Submission failed.');
+            }
+          } catch (err) {
+            console.error('Web3Forms error:', err);
+            status.textContent = 'Something went wrong. Please email me directly at deekshithh60@gmail.com.';
+            status.style.color = 'var(--accent)';
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalLabel;
+          }
         });
       })();
     </script>
