@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#faf8f4"/>
+      <stop offset="100%" stop-color="#f2ede4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <line x1="80" y1="105" x2="80" y2="525" stroke="#e8e0d4" stroke-width="1"/>
+  <line x1="1120" y1="105" x2="1120" y2="525" stroke="#e8e0d4" stroke-width="1"/>
+
+  <text x="100" y="95" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="500" letter-spacing="4" fill="#6b5f52">PORTFOLIO · MMXXVI</text>
+  <text x="1100" y="95" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="500" letter-spacing="4" fill="#6b5f52">MANGALURU · IN</text>
+
+  <line x1="100" y1="230" x2="160" y2="230" stroke="#c1440e" stroke-width="2"/>
+  <text x="180" y="237" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="500" letter-spacing="3" fill="#6b5f52">SOFTWARE ENGINEER</text>
+
+  <text x="100" y="370" font-family="Georgia, 'Times New Roman', serif" font-size="118" font-weight="500" fill="#1a1612" letter-spacing="-2">Deekshith H</text>
+  <text x="100" y="490" font-family="Georgia, 'Times New Roman', serif" font-size="118" font-style="italic" font-weight="400" fill="#c1440e" letter-spacing="-2">Gatty.</text>
+
+  <text x="100" y="565" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#6b5f52">AI-driven tools · Backend systems · Automation workflows</text>
+</svg>

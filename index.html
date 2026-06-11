@@ -2,10 +2,49 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Portfolio/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/Portfolio/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#faf8f4" />
     <meta name="description" content="Deekshith H Gatty — Software Engineer building AI-driven tools, automation workflows and backend systems." />
     <title>Deekshith H Gatty — Software Engineer</title>
+
+    <link rel="canonical" href="https://deekshith216.github.io/Portfolio/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://deekshith216.github.io/Portfolio/" />
+    <meta property="og:title" content="Deekshith H Gatty — Software Engineer" />
+    <meta property="og:description" content="AI-driven tools, automation workflows and backend systems. Available for new opportunities." />
+    <meta property="og:image" content="https://deekshith216.github.io/Portfolio/og.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Deekshith H Gatty — Software Engineer" />
+    <meta name="twitter:description" content="AI-driven tools, automation workflows and backend systems." />
+    <meta name="twitter:image" content="https://deekshith216.github.io/Portfolio/og.svg" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Deekshith H Gatty",
+        "jobTitle": "Software Engineer",
+        "url": "https://deekshith216.github.io/Portfolio/",
+        "email": "deekshithh60@gmail.com",
+        "telephone": "+91-7411185356",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Mangaluru",
+          "addressRegion": "Karnataka",
+          "addressCountry": "IN"
+        },
+        "worksFor": { "@type": "Organization", "name": "MicroDegree" },
+        "sameAs": [
+          "https://github.com/Deekshith216",
+          "https://linkedin.com/in/deekshith-h-gatty-807477205"
+        ]
+      }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -246,6 +285,28 @@
         font-size: 0.9rem;
         color: var(--text-muted);
       }
+      .mm-footer .mm-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+      .mm-footer .mm-actions a {
+        font-family: var(--font-sans);
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.7rem 1.1rem;
+        border-radius: 6px;
+        border: 1px solid var(--surface-2);
+        color: var(--text-primary);
+      }
+      .mm-footer .mm-actions a.is-primary {
+        background: var(--accent);
+        color: var(--bg);
+        border-color: var(--accent);
+      }
 
       /* ===========================================================
          Buttons
@@ -331,7 +392,7 @@
         margin: 0;
         color: var(--text-primary);
       }
-      .hero-title .line { display: block; overflow: hidden; padding-block: 0.04em; }
+      .hero-title .line { display: block; overflow: hidden; padding: 0.04em 0 0.22em; }
       .hero-title .line > span {
         display: inline-block;
         transform: translateY(110%);
@@ -627,6 +688,24 @@
         min-height: 320px;
         box-shadow: var(--paper-shadow);
       }
+      .card::before {
+        content: attr(data-watermark);
+        position: absolute;
+        right: -1.5rem;
+        bottom: -3.5rem;
+        font-family: var(--font-display);
+        font-style: italic;
+        font-weight: 500;
+        font-size: clamp(9rem, 14vw, 13rem);
+        line-height: 0.85;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--surface-2);
+        pointer-events: none;
+        z-index: 0;
+        transition: -webkit-text-stroke-color 320ms var(--ease-out);
+      }
+      .card:hover::before { -webkit-text-stroke-color: rgba(193, 68, 14, 0.32); }
+      .card > * { position: relative; z-index: 1; }
       .card:hover {
         transform: translateY(-4px);
         box-shadow: var(--paper-shadow-lift);
@@ -636,6 +715,11 @@
         background:
           linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
         min-height: 460px;
+      }
+      .card--feature::before {
+        font-size: clamp(14rem, 22vw, 20rem);
+        right: -2rem;
+        bottom: -5rem;
       }
 
       .card-index {
@@ -1046,6 +1130,10 @@
         </ul>
       </nav>
       <div class="mm-footer">
+        <div class="mm-actions">
+          <a class="is-primary" href="https://drive.google.com/file/d/1neMB-r_ncVRRaAnWD4e20lS0rdO74bW5/view?usp=sharing" target="_blank" rel="noopener">Resume →</a>
+          <a href="https://linkedin.com/in/deekshith-h-gatty-807477205" target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
         deekshithh60@gmail.com<br />
         Mangaluru, India
       </div>
@@ -1079,11 +1167,13 @@
               <dd>AI Agents · Backend · Automation</dd>
             </dl>
             <div class="hero-ctas">
-              <a class="btn btn--primary" href="#work">
-                View work <span class="arrow" aria-hidden="true">→</span>
+              <a class="btn btn--primary"
+                 href="https://drive.google.com/file/d/1neMB-r_ncVRRaAnWD4e20lS0rdO74bW5/view?usp=sharing"
+                 target="_blank" rel="noopener">
+                Download resume <span class="arrow" aria-hidden="true">→</span>
               </a>
-              <a class="btn btn--ghost" href="#contact">
-                Get in touch
+              <a class="btn btn--ghost" href="#work">
+                See work
               </a>
             </div>
           </div>
@@ -1139,8 +1229,8 @@
                   <div class="label">Shipped projects</div>
                 </div>
                 <div class="stat reveal" data-delay="3">
-                  <div class="num"><span data-count="100">0</span><span class="suffix">%</span></div>
-                  <div class="label">Caffeinated</div>
+                  <div class="num"><span data-count="8">0</span><span class="suffix">+</span></div>
+                  <div class="label">Tools &amp; tech</div>
                 </div>
               </div>
             </div>
@@ -1223,14 +1313,14 @@
           </div>
 
           <div class="bento">
-            <article class="card card--feature reveal" data-delay="1">
+            <article class="card card--feature reveal" data-delay="1" data-watermark="01">
               <div class="card-index">
                 <span>P / 01</span>
                 <span class="featured-pill">Featured</span>
               </div>
               <h3 class="card-title">Smart Study Assistant</h3>
               <p class="card-desc">
-                A multi‑role AI chatbot built with prompt engineering — it helps students learn, revise, practice and stay motivated, all from a single application. The kind of patient study buddy that's always awake at 2&nbsp;a.m.
+                A multi‑role AI chatbot built with prompt engineering — it guides students through learning, revision, practice and motivation, all from a single application. A patient, always‑available companion for late‑night study.
               </p>
               <ul class="card-tags">
                 <li>Python</li><li>Streamlit</li><li>OpenAI LLM</li><li>Prompt Engineering</li>
@@ -1243,7 +1333,7 @@
               </div>
             </article>
 
-            <article class="card reveal" data-delay="2">
+            <article class="card reveal" data-delay="2" data-watermark="02">
               <div class="card-index"><span>P / 02</span></div>
               <h3 class="card-title">Smart Text Summarizer</h3>
               <p class="card-desc">
@@ -1260,7 +1350,7 @@
               </div>
             </article>
 
-            <article class="card reveal" data-delay="3">
+            <article class="card reveal" data-delay="3" data-watermark="03">
               <div class="card-index"><span>P / 03</span></div>
               <h3 class="card-title">FAQ Knowledge Assistant</h3>
               <p class="card-desc">
@@ -1277,7 +1367,7 @@
               </div>
             </article>
 
-            <article class="card reveal" data-delay="4">
+            <article class="card reveal" data-delay="4" data-watermark="04">
               <div class="card-index"><span>P / 04</span></div>
               <h3 class="card-title">Naukri Auto‑Updater</h3>
               <p class="card-desc">
@@ -1370,7 +1460,7 @@
             Let's build<br /><em>something good.</em>
           </h2>
 
-          <a class="contact-email reveal" data-delay="2" href="#contact-form">
+          <a class="contact-email reveal" data-delay="2" href="mailto:deekshithh60@gmail.com">
             deekshithh60@gmail.com&nbsp;→
           </a>
 
@@ -1412,7 +1502,8 @@
               <div class="lbl">Elsewhere</div>
               <div class="val links">
                 <a href="https://github.com/Deekshith216" target="_blank" rel="noopener">GitHub</a>
-                <a href="#contact-form">Email</a>
+                <a href="https://linkedin.com/in/deekshith-h-gatty-807477205" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:deekshithh60@gmail.com">Email</a>
                 <a href="https://drive.google.com/file/d/1neMB-r_ncVRRaAnWD4e20lS0rdO74bW5/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
               </div>
             </div>
