@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #faf8f4;
+  --color-surface: #f2ede4;
+  --color-surface-2: #e8e0d4;
+  --color-ink: #1a1612;
+  --color-ink-muted: #6b5f52;
+  --color-ink-light: #9c8e82;
+  --color-accent: #c1440e;
+  --color-accent-hover: #a93a09;
+  --color-accent-alt: #2d5a3d;
+
+  --font-display: "Playfair Display", "Times New Roman", serif;
+  --font-sans: "DM Sans", "Helvetica Neue", sans-serif;
+
+  --ease-kinetic: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 42s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--
+  PROTOTYPE — throwaway, not production.
+  Three structural variants for the GenAI/LLM Case Studies format, all using
+  the decided Kinetic Maximal Type visual identity. Content below is pulled
+  from the REAL project descriptions in index.html (not fabricated) — no
+  invented metrics/outcomes, since none exist yet in the source content.
+  Switchable via ?variant=A|B|C or the bottom bar.
+  Resolves: .scratch/portfolio-redesign/issues/04-genai-case-study-format.md
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study Format — Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900&family=Playfair+Display:ital,wght@0,700;0,900;1,500;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f4; --accent: #c1440e; --accent-alt: #2d5a3d; --text: #1a1612;
+    --font-serif: 'Playfair Display', serif; --font-sans: 'DM Sans', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+  .variant { display: none; padding-bottom: 6rem; }
+  .variant.active { display: block; }
+  h2.section-label { font-family: var(--font-sans); font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 2.5rem clamp(1.5rem, 5vw, 4rem) 0.5rem; }
+  .eyebrow { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-alt); font-weight: 700; margin: 2.5rem clamp(1.5rem, 5vw, 4rem) 0; }
+  .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; list-style: none; margin: 1rem 0; padding: 0; }
+  .tags li { font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.7rem; border-radius: 999px; background: rgba(26,22,18,0.08); }
+  .link-arrow { font-weight: 700; text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 0.4rem; border-bottom: 2px solid var(--text); padding-bottom: 2px; }
+
+  /* ============ VARIANT A — Full-bleed Stacked Story ============ */
+  .v-a .story {
+    position: relative; overflow: hidden; padding: 5rem clamp(1.5rem, 5vw, 4rem);
+    border-top: 1px solid rgba(26,22,18,0.12);
+  }
+  .v-a .story .bg-num {
+    position: absolute; top: -1rem; right: clamp(1rem, 4vw, 3rem); font-weight: 900; font-size: clamp(6rem, 16vw, 14rem);
+    line-height: 1; opacity: 0.08; z-index: 0; user-select: none;
+  }
+  .v-a .story-inner { position: relative; z-index: 1; max-width: 900px; }
+  .v-a .story h3 {
+    font-family: var(--font-serif); font-style: italic; font-weight: 700; font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+    display: inline-block; color: var(--bg); background: var(--text); padding: 0.3rem 1rem; transform: rotate(-1deg); margin: 0 0 1.5rem;
+  }
+  .v-a .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 1.5rem; }
+  .v-a .col-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.4rem; }
+  .v-a .col p { margin: 0; line-height: 1.6; }
+
+  /* ============ VARIANT B — Tabbed Deep-Dive ============ */
+  .v-b .tabs { display: flex; gap: 0.75rem; padding: 2.5rem clamp(1.5rem, 5vw, 4rem) 0; flex-wrap: wrap; }
+  .v-b .tab {
+    font-family: var(--font-sans); font-weight: 700; font-size: 0.9rem; padding: 0.7rem 1.3rem; border-radius: 999px;
+    border: 2px solid var(--text); background: transparent; cursor: pointer; color: var(--text);
+  }
+  .v-b .tab.selected { background: var(--text); color: var(--bg); }
+  .v-b .panel { padding: 3rem clamp(1.5rem, 5vw, 4rem); max-width: 900px; }
+  .v-b .panel .quote {
+    font-family: var(--font-serif); font-style: italic; font-weight: 700; font-size: clamp(1.6rem, 4vw, 2.6rem);
+    line-height: 1.25; margin: 0 0 2rem; position: relative;
+  }
+  .v-b .panel .quote::before { content: '\201C'; color: var(--accent); font-size: 1.4em; margin-right: 0.1em; }
+  .v-b .approach-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--accent-alt); }
+  .v-b .approach { font-size: 1.05rem; line-height: 1.7; max-width: 65ch; margin-top: 0.5rem; }
+
+  /* ============ VARIANT C — Asymmetric Grid Collage ============ */
+  .v-c .grid { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: 1.25rem; padding: 2.5rem clamp(1.5rem, 5vw, 4rem); }
+  .v-c .cell {
+    position: relative; padding: 2rem; color: var(--bg); overflow: hidden; box-shadow: 8px 8px 0 var(--text);
+  }
+  .v-c .cell.large { grid-row: span 2; padding: 2.5rem; }
+  .v-c .cell.bg-accent { background: var(--accent); }
+  .v-c .cell.bg-alt { background: var(--accent-alt); }
+  .v-c .cell.bg-dark { background: var(--text); }
+  .v-c .cell .cell-num { font-weight: 900; font-size: 0.85rem; opacity: 0.8; }
+  .v-c .cell h3 { font-family: var(--font-serif); font-weight: 900; margin: 0.4rem 0; font-size: clamp(1.3rem, 3vw, 2rem); }
+  .v-c .cell.large h3 { font-size: clamp(1.8rem, 4vw, 3rem); }
+  .v-c .cell p { margin: 0.5rem 0; opacity: 0.95; line-height: 1.55; font-size: 0.95rem; }
+  .v-c .cell .tags li { background: rgba(255,255,255,0.18); color: var(--bg); transform: rotate(-1deg); }
+  .v-c .cell .link-arrow { color: var(--bg); border-bottom-color: var(--bg); }
+  @media (max-width: 720px) { .v-c .grid { grid-template-columns: 1fr; } .v-c .cell.large { grid-row: auto; } }
+
+  /* ============ Switcher bar ============ */
+  #switcher {
+    position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 0.75rem; background: #1a1612; color: #faf8f4; border-radius: 999px;
+    padding: 0.5rem 0.5rem 0.5rem 0.9rem; box-shadow: 0 8px 24px rgba(0,0,0,0.25); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; z-index: 999;
+  }
+  #switcher button { background: rgba(255,255,255,0.12); border: none; color: #faf8f4; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
+  #switcher button:hover { background: rgba(255,255,255,0.25); }
+  #switcher .label { min-width: 17ch; text-align: center; }
+</style>
+</head>
+<body>
+
+  <div class="eyebrow" style="margin-top:1.5rem;">GenAI / LLM Case Studies — format prototype</div>
+
+  <section class="variant v-a" data-key="A" data-name="Full-bleed Stacked Story"></section>
+  <section class="variant v-b" data-key="B" data-name="Tabbed Deep-Dive"></section>
+  <section class="variant v-c" data-key="C" data-name="Asymmetric Grid Collage"></section>
+
+  <div id="switcher">
+    <button id="prev" aria-label="Previous variant">←</button>
+    <span class="label" id="label"></span>
+    <button id="next" aria-label="Next variant">→</button>
+  </div>
+
+<script>
+  const studies = [
+    {
+      num: '01', title: 'Smart Study Assistant',
+      problem: 'Late-night studying is lonely and unstructured — no one around for a quick check-in or a nudge to keep going.',
+      approach: 'A multi-role AI chatbot, built with careful prompt engineering, that guides a student through learning, revision, practice and motivation — all from one application.',
+      tags: ['Python', 'Streamlit', 'OpenAI LLM', 'Prompt Engineering'],
+      link: 'https://github.com/Deekshith216/Smart_Study_Assistant', color: 'accent', bgClass: 'bg-accent'
+    },
+    {
+      num: '02', title: 'Smart Text Summarizer',
+      problem: 'Long documents take longer to read than most people have time for, when only the substance actually matters.',
+      approach: 'An AI-powered summarizer that distills long text into clean, concise output using structured prompting and an extensible architecture.',
+      tags: ['Python', 'Streamlit', 'OpenAI LLM', 'Prompts'],
+      link: 'https://github.com/Deekshith216/smart_text_summarizer', color: 'alt', bgClass: 'bg-alt'
+    },
+    {
+      num: '03', title: 'FAQ Knowledge Assistant',
+      problem: "Answers live scattered across a knowledge base — finding the right one by hand doesn't scale.",
+      approach: 'A retrieval-augmented chatbot that answers questions over a custom knowledge base, built on FAISS vector search paired with an OpenAI LLM.',
+      tags: ['Python', 'RAG', 'FAISS', 'OpenAI', 'Streamlit'],
+      link: 'https://github.com/Deekshith216/faq-knowledge-assistant', color: 'dark', bgClass: 'bg-dark'
+    }
+  ];
+
+  function renderA() {
+    const el = document.querySelector('.v-a');
+    el.innerHTML = studies.map(s => `
+      <div class="story">
+        <div class="bg-num" style="color:${s.color === 'accent' ? 'var(--accent)' : s.color === 'alt' ? 'var(--accent-alt)' : 'var(--text)'}">${s.num}</div>
+        <div class="story-inner">
+          <h3>${s.title}</h3>
+          <div class="cols">
+            <div class="col"><div class="col-label">Problem</div><p>${s.problem}</p></div>
+            <div class="col"><div class="col-label">Approach</div><p>${s.approach}</p></div>
+          </div>
+          <ul class="tags">${s.tags.map(t => `<li>${t}</li>`).join('')}</ul>
+          <a class="link-arrow" href="${s.link}" target="_blank" rel="noopener">View source →</a>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderB() {
+    const el = document.querySelector('.v-b');
+    el.innerHTML = `
+      <div class="tabs">${studies.map((s, i) => `<button class="tab${i === 0 ? ' selected' : ''}" data-idx="${i}">${s.title}</button>`).join('')}</div>
+      <div class="panel" id="b-panel"></div>
+    `;
+    const renderPanel = (i) => {
+      const s = studies[i];
+      document.getElementById('b-panel').innerHTML = `
+        <div class="quote">${s.problem}</div>
+        <div class="approach-label">Approach</div>
+        <p class="approach">${s.approach}</p>
+        <ul class="tags">${s.tags.map(t => `<li>${t}</li>`).join('')}</ul>
+        <a class="link-arrow" href="${s.link}" target="_blank" rel="noopener">View source →</a>
+      `;
+    };
+    renderPanel(0);
+    el.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', () => {
+      el.querySelectorAll('.tab').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      renderPanel(+btn.dataset.idx);
+    }));
+  }
+
+  function renderC() {
+    const el = document.querySelector('.v-c');
+    el.innerHTML = `<div class="grid">${studies.map((s, i) => `
+      <div class="cell ${s.bgClass} ${i === 0 ? 'large' : ''}">
+        <div class="cell-num">CASE / ${s.num}</div>
+        <h3>${s.title}</h3>
+        <p>${s.approach}</p>
+        <ul class="tags">${s.tags.map(t => `<li>${t}</li>`).join('')}</ul>
+        <a class="link-arrow" href="${s.link}" target="_blank" rel="noopener">View source →</a>
+      </div>
+    `).join('')}</div>`;
+  }
+
+  renderA(); renderB(); renderC();
+
+  const variants = ['A', 'B', 'C'];
+  const sections = { A: document.querySelector('.v-a'), B: document.querySelector('.v-b'), C: document.querySelector('.v-c') };
+
+  function getVariantFromUrl() {
+    const p = new URLSearchParams(window.location.search).get('variant');
+    return variants.includes(p) ? p : 'A';
+  }
+  function show(key) {
+    variants.forEach(v => sections[v].classList.toggle('active', v === key));
+    document.getElementById('label').textContent = key + ' — ' + sections[key].dataset.name;
+    const url = new URL(window.location);
+    url.searchParams.set('variant', key);
+    window.history.replaceState({}, '', url);
+  }
+  function cycle(delta) {
+    const current = getVariantFromUrl();
+    const idx = (variants.indexOf(current) + delta + variants.length) % variants.length;
+    show(variants[idx]);
+  }
+  document.getElementById('prev').addEventListener('click', () => cycle(-1));
+  document.getElementById('next').addEventListener('click', () => cycle(1));
+  document.addEventListener('keydown', (e) => {
+    const el = document.activeElement;
+    if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)) return;
+    if (e.key === 'ArrowLeft') cycle(-1);
+    if (e.key === 'ArrowRight') cycle(1);
+  });
+  show(getVariantFromUrl());
+</script>
+</body>
+</html>
