@@ -17,6 +17,7 @@ A UI/UX redesign spec for Deekshith H Gatty's portfolio: a bold, striking visual
 ## Decisions so far
 
 - [Contact Form Service](issues/07-contact-form-service.md) — Web3Forms: best free tier, no client library, plain POST works on static GitHub Pages hosting. Details on branch `worktree-agent-aa25915ed47a09979`.
+- [Visual Identity System](issues/01-visual-identity-system.md) — Kinetic Maximal Type: oversized DM Sans background type as texture, burnt-orange/green promoted to solid color blocks (not just accents), layered/rotated composition, hard offset shadows. Reference spec for Hero, Motion, Case Study Format, and React Component Architecture.
 
 ## Not yet specified
 
