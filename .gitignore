@@ -25,3 +25,6 @@ dist-ssr
 
 # Agent worktrees (nested git checkouts, not real content)
 .claude/worktrees/
+
+# Local secrets — .env.example is the tracked template
+.env
