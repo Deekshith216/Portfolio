@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--
+  PROTOTYPE — throwaway, not production.
+  Three variants of the portfolio's visual identity system (typography, color,
+  spacing/grid, graphic devices), switchable via ?variant=A|B|C or the bottom bar.
+  Standalone static file — just open it in a browser, no build step.
+  Resolves wayfinder ticket: .scratch/portfolio-redesign/issues/01-visual-identity-system.md
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Identity — Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900&family=IBM+Plex+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f4;
+    --surface: #f2ede4;
+    --accent: #c1440e;
+    --accent-alt: #2d5a3d;
+    --text: #1a1612;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'DM Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+  .variant { display: none; min-height: 100vh; }
+  .variant.active { display: block; }
+
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+  }
+  .nav-name { font-weight: 700; letter-spacing: -0.01em; }
+  .nav-links { display: flex; gap: clamp(1rem, 3vw, 2.5rem); list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+  .nav-links a { color: inherit; text-decoration: none; }
+
+  /* ============ VARIANT A — Editorial / Oversized Numerals ============ */
+  .v-a { padding-bottom: 4rem; }
+  .v-a .hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: 2rem;
+    padding: 2rem clamp(1.5rem, 5vw, 4rem) 4rem;
+    align-items: end;
+  }
+  .v-a .watermark {
+    position: absolute; top: -2rem; right: clamp(1.5rem, 5vw, 4rem);
+    font-family: var(--font-serif); font-weight: 900; font-size: clamp(6rem, 14vw, 13rem);
+    color: var(--accent); opacity: 0.09; line-height: 1; z-index: 0; pointer-events: none;
+  }
+  .v-a .eyebrow {
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-alt); font-weight: 700; margin-bottom: 1rem;
+  }
+  .v-a h1 {
+    font-family: var(--font-serif); font-weight: 900; font-style: normal;
+    font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.98; letter-spacing: -0.02em;
+    margin: 0; position: relative; z-index: 1;
+  }
+  .v-a h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .v-a .meta-col { font-size: 0.95rem; line-height: 1.6; border-left: 1px solid var(--text); padding-left: 1.5rem; }
+  .v-a hr { border: none; border-top: 1px solid rgba(26,22,18,0.15); margin: 0 clamp(1.5rem, 5vw, 4rem); }
+  .v-a .stats {
+    display: flex; gap: clamp(2rem, 6vw, 5rem); padding: 3rem clamp(1.5rem, 5vw, 4rem);
+  }
+  .v-a .stat-num { font-family: var(--font-serif); font-size: 3rem; font-weight: 700; color: var(--accent); }
+  .v-a .stat-label { font-size: 0.85rem; color: rgba(26,22,18,0.65); margin-top: 0.25rem; }
+  .v-a .project {
+    margin: 0 clamp(1.5rem, 5vw, 4rem); padding: 2.5rem 0;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; border-top: 1px solid rgba(26,22,18,0.15);
+  }
+  .v-a .project-num { font-family: var(--font-serif); font-size: 1.2rem; color: var(--accent-alt); }
+  .v-a .project h3 { font-family: var(--font-serif); font-size: 1.8rem; margin: 0 0 0.5rem; }
+  .v-a .project p { margin: 0; color: rgba(26,22,18,0.75); max-width: 42ch; }
+  .v-a .tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+
+  /* ============ VARIANT B — Mono-Grid Technical ============ */
+  .v-b {
+    background-image:
+      linear-gradient(rgba(26,22,18,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,22,18,0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    padding-bottom: 4rem;
+  }
+  .v-b .nav-links a::before { content: "// "; color: var(--accent-alt); }
+  .v-b .hero { padding: 3rem clamp(1.5rem, 5vw, 4rem) 3rem; }
+  .v-b .tagline {
+    font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-alt);
+    background: rgba(45,90,61,0.1); display: inline-block; padding: 0.3rem 0.7rem;
+    border: 1px solid var(--accent-alt); margin-bottom: 1.5rem;
+  }
+  .v-b h1 {
+    font-family: var(--font-sans); font-weight: 900; font-size: clamp(2.4rem, 6.5vw, 5rem);
+    line-height: 1.03; letter-spacing: -0.015em; margin: 0 0 1.5rem; max-width: 16ch;
+  }
+  .v-b h1 .bracket { color: var(--accent); }
+  .v-b .desc { font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.7; max-width: 58ch; color: rgba(26,22,18,0.8); }
+  .v-b .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    margin: 3rem clamp(1.5rem, 5vw, 4rem) 0; border: 1px solid var(--text);
+  }
+  .v-b .stat { padding: 1.5rem; border-right: 1px solid var(--text); }
+  .v-b .stat:last-child { border-right: none; }
+  .v-b .stat-num { font-family: var(--font-mono); font-size: 2rem; font-weight: 600; color: var(--accent); }
+  .v-b .stat-label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; color: rgba(26,22,18,0.6); margin-top: 0.3rem; }
+  .v-b .project {
+    margin: 0 clamp(1.5rem, 5vw, 4rem); margin-top: 2rem; padding: 1.75rem;
+    border: 1px solid var(--text); background: rgba(250,248,244,0.6);
+  }
+  .v-b .project .tag {
+    font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-alt);
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .v-b .project h3 { font-family: var(--font-sans); font-weight: 700; font-size: 1.4rem; margin: 0.5rem 0; }
+  .v-b .project p { font-family: var(--font-mono); font-size: 0.85rem; color: rgba(26,22,18,0.75); margin: 0; }
+
+  /* ============ VARIANT C — Kinetic Maximal Type ============ */
+  .v-c { padding-bottom: 4rem; overflow: hidden; }
+  .v-c .hero { position: relative; padding: 1rem clamp(1.5rem, 5vw, 4rem) 5rem; }
+  .v-c .bg-type {
+    position: absolute; top: 2rem; left: clamp(1rem, 4vw, 3rem);
+    font-family: var(--font-sans); font-weight: 900; font-size: clamp(5rem, 16vw, 14rem);
+    color: var(--accent); opacity: 0.85; line-height: 0.85; letter-spacing: -0.04em;
+    z-index: 0; transform: rotate(-3deg);
+  }
+  .v-c .block-green {
+    position: absolute; top: 6rem; right: clamp(1rem, 6vw, 5rem); width: clamp(120px, 20vw, 220px); height: clamp(120px, 20vw, 220px);
+    background: var(--accent-alt); border-radius: 50%; z-index: 0; opacity: 0.9;
+  }
+  .v-c h1 {
+    position: relative; z-index: 2; font-family: var(--font-serif); font-style: italic; font-weight: 700;
+    font-size: clamp(2.2rem, 6vw, 4.5rem); line-height: 1; color: var(--bg);
+    background: var(--text); display: inline-block; padding: 0.3rem 1rem; margin: 8rem 0 0;
+    transform: rotate(-1.5deg);
+  }
+  .v-c .sub {
+    position: relative; z-index: 2; margin-top: 1.5rem; max-width: 46ch; font-size: 1.05rem;
+    line-height: 1.6; color: rgba(26,22,18,0.85);
+  }
+  .v-c .stats { position: relative; z-index: 2; display: flex; gap: clamp(1.5rem, 5vw, 4rem); margin: 3rem clamp(1.5rem, 5vw, 4rem); flex-wrap: wrap; }
+  .v-c .stat-num {
+    font-family: var(--font-sans); font-weight: 900; font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--bg); -webkit-text-stroke: 2px var(--text); text-shadow: 3px 3px 0 var(--accent);
+  }
+  .v-c .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.3rem; }
+  .v-c .project {
+    position: relative; z-index: 2; margin: 0 clamp(1.5rem, 5vw, 4rem); margin-top: 2rem;
+    padding: 2rem; background: var(--accent); color: var(--bg); transform: rotate(0.6deg);
+    box-shadow: 8px 8px 0 var(--text);
+  }
+  .v-c .project .tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
+  .v-c .project h3 { font-family: var(--font-serif); font-weight: 900; font-size: 2rem; margin: 0.4rem 0; }
+  .v-c .project p { margin: 0; max-width: 44ch; opacity: 0.95; }
+
+  /* ============ Switcher bar ============ */
+  #switcher {
+    position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 0.75rem;
+    background: #1a1612; color: #faf8f4; border-radius: 999px;
+    padding: 0.5rem 0.5rem 0.5rem 0.9rem; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; z-index: 999;
+  }
+  #switcher button {
+    background: rgba(255,255,255,0.12); border: none; color: #faf8f4;
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #switcher button:hover { background: rgba(255,255,255,0.25); }
+  #switcher .label { min-width: 15ch; text-align: center; }
+</style>
+</head>
+<body>
+
+  <section class="variant v-a" data-key="A" data-name="Editorial — Oversized Numerals">
+    <div class="watermark">01</div>
+    <nav class="nav"><div class="nav-name">Deekshith H Gatty</div>
+      <ul class="nav-links"><li><a href="#">Work</a></li><li><a href="#">About</a></li><li><a href="#">Skills</a></li><li><a href="#">Journey</a></li><li><a href="#">Contact</a></li></ul>
+    </nav>
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Software Engineer · AI Systems</div>
+        <h1>Building <em>AI-driven</em><br>tools that ship.</h1>
+      </div>
+      <div class="meta-col">Automation workflows, RAG pipelines, and backend systems for people who'd rather the machine do the boring part.</div>
+    </div>
+    <hr>
+    <div class="stats">
+      <div><div class="stat-num">01+</div><div class="stat-label">Years building</div></div>
+      <div><div class="stat-num">04+</div><div class="stat-label">Shipped projects</div></div>
+      <div><div class="stat-num">08+</div><div class="stat-label">Tools &amp; tech</div></div>
+    </div>
+    <div class="project">
+      <div><div class="project-num">02 —</div><span class="tag">GenAI · LLM</span></div>
+      <div><h3>Smart Study Assistant</h3><p>Python / Streamlit / OpenAI — a conversational study companion that turns raw notes into structured, quizzable knowledge.</p></div>
+    </div>
+  </section>
+
+  <section class="variant v-b" data-key="B" data-name="Mono-Grid Technical">
+    <nav class="nav"><div class="nav-name">Deekshith H Gatty</div>
+      <ul class="nav-links"><li><a href="#">Work</a></li><li><a href="#">About</a></li><li><a href="#">Skills</a></li><li><a href="#">Journey</a></li><li><a href="#">Contact</a></li></ul>
+    </nav>
+    <div class="hero">
+      <div class="tagline">status: open_to_work</div>
+      <h1>Software Engineer <span class="bracket">[</span>AI &amp; Automation<span class="bracket">]</span></h1>
+      <p class="desc">I build AI-driven tools, automation workflows, and backend systems — RAG pipelines, LLM chatbots, and the odd browser-automation bot that quietly does a job nobody wants to do by hand.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">01+</div><div class="stat-label">yrs_building</div></div>
+      <div class="stat"><div class="stat-num">04+</div><div class="stat-label">shipped_projects</div></div>
+      <div class="stat"><div class="stat-num">08+</div><div class="stat-label">tools_tech</div></div>
+    </div>
+    <div class="project">
+      <div class="tag">// genai / llm</div>
+      <h3>Smart Study Assistant</h3>
+      <p>Python · Streamlit · OpenAI — conversational study companion, structured knowledge from raw notes.</p>
+    </div>
+  </section>
+
+  <section class="variant v-c" data-key="C" data-name="Kinetic Maximal Type">
+    <nav class="nav"><div class="nav-name">Deekshith H Gatty</div>
+      <ul class="nav-links"><li><a href="#">Work</a></li><li><a href="#">About</a></li><li><a href="#">Skills</a></li><li><a href="#">Journey</a></li><li><a href="#">Contact</a></li></ul>
+    </nav>
+    <div class="hero">
+      <div class="bg-type">BUILD.</div>
+      <div class="block-green"></div>
+      <h1>Software Engineer, AI systems &amp; automation.</h1>
+      <p class="sub">I turn ideas into shipped tools — RAG pipelines, LLM chatbots, automation bots — fast, and without the fluff.</p>
+    </div>
+    <div class="stats">
+      <div><div class="stat-num">01+</div><div class="stat-label">Years building</div></div>
+      <div><div class="stat-num">04+</div><div class="stat-label">Shipped projects</div></div>
+      <div><div class="stat-num">08+</div><div class="stat-label">Tools &amp; tech</div></div>
+    </div>
+    <div class="project">
+      <span class="tag">GenAI · LLM</span>
+      <h3>Smart Study Assistant</h3>
+      <p>Python / Streamlit / OpenAI — a conversational study companion that turns raw notes into structured, quizzable knowledge.</p>
+    </div>
+  </section>
+
+  <div id="switcher">
+    <button id="prev" aria-label="Previous variant">←</button>
+    <span class="label" id="label"></span>
+    <button id="next" aria-label="Next variant">→</button>
+  </div>
+
+<script>
+  const variants = ['A', 'B', 'C'];
+  const sections = { A: document.querySelector('.v-a'), B: document.querySelector('.v-b'), C: document.querySelector('.v-c') };
+
+  function getVariantFromUrl() {
+    const p = new URLSearchParams(window.location.search).get('variant');
+    return variants.includes(p) ? p : 'A';
+  }
+
+  function show(key) {
+    variants.forEach(v => sections[v].classList.toggle('active', v === key));
+    const name = sections[key].dataset.name;
+    document.getElementById('label').textContent = key + ' — ' + name;
+    const url = new URL(window.location);
+    url.searchParams.set('variant', key);
+    window.history.replaceState({}, '', url);
+  }
+
+  function cycle(delta) {
+    const current = getVariantFromUrl();
+    const idx = (variants.indexOf(current) + delta + variants.length) % variants.length;
+    show(variants[idx]);
+  }
+
+  document.getElementById('prev').addEventListener('click', () => cycle(-1));
+  document.getElementById('next').addEventListener('click', () => cycle(1));
+
+  document.addEventListener('keydown', (e) => {
+    const el = document.activeElement;
+    if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)) return;
+    if (e.key === 'ArrowLeft') cycle(-1);
+    if (e.key === 'ArrowRight') cycle(1);
+  });
+
+  show(getVariantFromUrl());
+</script>
+</body>
+</html>
