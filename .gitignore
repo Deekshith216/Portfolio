@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Agent worktrees (nested git checkouts, not real content)
+.claude/worktrees/
