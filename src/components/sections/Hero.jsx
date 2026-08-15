@@ -81,7 +81,7 @@ export default function Hero() {
               rel="noopener"
               className="rounded-full bg-ink px-6 py-3 text-sm font-bold text-bg"
             >
-              Download Résumé →
+              Download Resume →
             </a>
             <a href="#work" className="rounded-full border-2 border-ink px-6 py-3 text-sm font-bold text-ink">
               View Work
