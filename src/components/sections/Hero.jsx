@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import StatCounter from '../shared/StatCounter.jsx'
 
-const RESUME_URL = 'https://drive.google.com/file/d/1neMB-r_ncVRRaAnWD4e20lS0rdO74bW5/view?usp=sharing'
+const RESUME_URL = 'https://drive.google.com/file/d/1UQjeU1YNt0giHskO-yQEcfcJChyTDCQ0/view?usp=sharing'
 
 export default function Hero() {
   const stageRef = useRef(null)
