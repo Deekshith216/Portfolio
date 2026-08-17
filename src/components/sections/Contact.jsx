@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useScrollReveal } from '../../hooks/useScrollReveal.js'
 
-const RESUME_URL = 'https://drive.google.com/file/d/1neMB-r_ncVRRaAnWD4e20lS0rdO74bW5/view?usp=sharing'
+const RESUME_URL = 'https://drive.google.com/file/d/1UQjeU1YNt0giHskO-yQEcfcJChyTDCQ0/view?usp=sharing'
 
 export default function Contact() {
   const pre = useScrollReveal()

@@ -35,11 +35,11 @@ export default function Nav() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-4 bg-bg/85 backdrop-blur-md transition-transform duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-4 py-3 bg-bg/85 backdrop-blur-md transition-transform duration-300 md:px-6 md:py-4 ${
           scrolled ? 'border-b border-surface-2' : 'border-b border-transparent'
         } ${hidden ? '-translate-y-full' : 'translate-y-0'}`}
       >
-        <a href="#hero" className="font-display font-medium text-lg tracking-tight text-ink">
+        <a href="#hero" className="font-display font-medium text-base tracking-tight text-ink md:text-lg">
           Deekshith&nbsp;H&nbsp;Gatty
         </a>
 
